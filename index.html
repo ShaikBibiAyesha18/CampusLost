@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CampusLost – College Lost & Found</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>CampusLost<small>Lost something? Found something? Post it here so it gets back to its owner.</small></h1>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="sLost">0</b><span>Still lost</span></div>
+      <div class="stat"><b id="sFound">0</b><span>Waiting to be claimed</span></div>
+      <div class="stat"><b id="sDone">0</b><span>Returned</span></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <section class="panel" aria-labelledby="fh">
+      <h2 id="fh">Report an item</h2>
+      <form id="form" novalidate>
+        <div class="seg" role="radiogroup" aria-label="Report type">
+          <div><input type="radio" name="type" id="tl" value="lost" checked><label class="l" for="tl">I lost it</label></div>
+          <div><input type="radio" name="type" id="tf" value="found"><label class="f" for="tf">I found it</label></div>
+        </div>
+        <label for="name">Item name</label>
+        <input id="name" name="name" maxlength="60" placeholder="e.g. Blue water bottle">
+        <div class="err" data-for="name"></div>
+        <label for="category">Category</label>
+        <select id="category" name="category"></select>
+        <div class="err" data-for="category"></div>
+        <label for="location">Location</label>
+        <input id="location" name="location" maxlength="60" placeholder="e.g. Library, 2nd floor">
+        <div class="err" data-for="location"></div>
+        <label for="date">Date</label>
+        <input id="date" name="date" type="date">
+        <div class="err" data-for="date"></div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" maxlength="300" placeholder="Colour, brand, marks, anything that identifies it"></textarea>
+        <div class="err" data-for="description"></div>
+        <label for="contact">Contact (email or phone)</label>
+        <input id="contact" name="contact" maxlength="60" placeholder="How can people reach you?">
+        <div class="err" data-for="contact"></div>
+        <button class="btn full" type="submit">Post item</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="lh">
+      <h2 id="lh" class="sr" style="position:absolute;left:-9999px">Items</h2>
+      <div class="filters">
+        <input id="q" type="search" placeholder="Search by keyword (name, place, description)" aria-label="Search items">
+        <select id="fCat" aria-label="Filter by category"></select>
+        <select id="fSort" aria-label="Sort">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+        </select>
+      </div>
+      <div class="tabs" id="tabs">
+        <button class="tab" data-v="all" aria-pressed="true">All</button>
+        <button class="tab" data-v="lost" aria-pressed="false">Lost</button>
+        <button class="tab" data-v="found" aria-pressed="false">Found</button>
+        <button class="tab" data-v="resolved" aria-pressed="false">Returned</button>
+      </div>
+      <div id="list" class="list"></div>
+    </section>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
